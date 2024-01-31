@@ -1,5 +1,6 @@
 package com.codingrecipe.board.dto;
 
+import com.codingrecipe.board.entity.BoardEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -22,4 +23,17 @@ public class BoardDto {
     private int boardHits;
     private LocalDateTime boardCreatedTime;
     private LocalDateTime boardUpdateTime;
+
+    public static BoardDto toBoardDTO(BoardEntity boardEntity){
+        BoardDto boardDto = new BoardDto();
+        boardDto.setId(boardEntity.getId());
+        boardDto.setBoardTitle(boardEntity.getBoardTitle());
+        boardDto.setBoardWriter(boardEntity.getBoardWriter());
+        boardDto.setBoardPass(boardEntity.getBoardPass());
+        boardDto.setBoardContents(boardEntity.getBoardContents());
+        boardDto.setBoardHits(boardEntity.getBoardHits());
+        boardDto.setBoardCreatedTime(boardEntity.getCreatedTime());
+        boardDto.setBoardUpdateTime(boardEntity.getUpdateTime());
+        return boardDto;
+    }
 }
