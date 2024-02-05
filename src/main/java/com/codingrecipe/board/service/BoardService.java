@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // DTO -> Entity 로 변환하거나 (Entity Class)
 // Entity -> DTO 로 변환하거나 하는 일을 함 (DTO Class)
@@ -38,5 +39,22 @@ public class BoardService  {
             boardDtoList.add(BoardDto.toBoardDTO(boardEntity));
         }
         return boardDtoList;
+    }
+
+    @Transactional // JPA 에서 제공되는 메소드가 아닌 개발자가 직접 정의해서 만든 메소드를 쓸려면 이 어노테이션을 사용함
+    public void updateHits(Long id) {
+        boardRepository.updateHits(id);
+    }
+
+    public BoardDto findById(Long id) {
+        Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
+        if (optionalBoardEntity.isPresent()){
+            BoardEntity boardEntity = optionalBoardEntity.get();
+            BoardDto boardDto = BoardDto.toBoardDTO(boardEntity);
+            return boardDto;
+        }else{
+            return null;
+        }
+
     }
 }
