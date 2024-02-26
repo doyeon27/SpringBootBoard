@@ -4,11 +4,13 @@ import com.codingrecipe.board.dto.BoardDto;
 import com.codingrecipe.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -73,5 +75,17 @@ public class BoardController {
         boardService.delete(id);
         return "redirect:/board/";
     }
+
+
+
+//    // import org.springframework.data.domain.Pageable; 임포트 이거 해야함, Pageable
+//    // 페이징 요청이 올때, /board/paging?page=1 이런 식으로
+//    @GetMapping("/paging")
+//    public String paging(@PageableDefault(page = 1) Pageable pageable, Model model){
+////        pageable.getPageNumber();
+//        Page<BoardDto> boardList = boardService.paging(pageable);
+//
+//
+//    }
 
 }

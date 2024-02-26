@@ -6,6 +6,10 @@ import com.codingrecipe.board.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,4 +71,12 @@ public class BoardService  {
     public void delete(Long id) {
         boardRepository.deleteById(id);
     }
+
+//    public Page<BoardDto> paging(Pageable pageable) {
+//        int page = pageable.getPageNumber() -1;
+//        int pageLimit = 3; // 한 페이지에 보여줄 게시글 개수
+//        Page<BoardEntity> boardEntities =                                                  // "id" 는 엔티티에 작성한 기준
+//                boardRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "id")));
+//
+//    }
 }
